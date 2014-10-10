@@ -51,4 +51,8 @@ function keyDown(e){
     if(e.keyCode == 38){
         leftPlVY = -2;
     }
+    if(e.keyCode == 40){
+        leftPlVY = 2;
+    }
+    console.log(e.keyCode);
 }
