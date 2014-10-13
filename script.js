@@ -93,5 +93,24 @@ function keyDown(e){
     }
     
     //kolla keyID
-    console.log(e.keyCode);
+//    console.log(e.keyCode);
+}
+    
+function keyUp(e){
+    //vänster knapptryck uppåt w
+    if(e.keyCode == 87){
+        leftPlVY = 0;
+    }
+    //vänster neråt s
+    if(e.keyCode == 83){
+        leftPlVY = 0;
+    }
+    //höger uppåt up
+    if(e.keyCode == 38){
+        rightPlVY = 0;
+    }
+    //höger neråt down
+    if(e.keyCode == 40){
+        rightPlVY = 0;
+    }
 }
