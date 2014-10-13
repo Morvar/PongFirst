@@ -74,29 +74,22 @@ function update(){
 
 }
 //funktionen som behandlar alla knapptryckningar
-object.onkeypress = function keyPress(e){
+function keyDown(e){
     //vänster knapptryck uppåt w
     if(e.keyCode == 87){
         leftPlVY = -2;
     }
-    
     //vänster neråt s
-    else if(e.keyCode == 83){
+    if(e.keyCode == 83){
         leftPlVY = 2;
-    }
-    else{
-        leftPlVY = 0;
     }
     //höger uppåt up
     if(e.keyCode == 38){
         rightPlVY = -2;
     }
     //höger neråt down
-    else if(e.keyCode == 40){
+    if(e.keyCode == 40){
         rightPlVY = 2;
-    }
-    else{
-        rightPlVY = 0;
     }
     
     //kolla keyID
