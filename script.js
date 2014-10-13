@@ -1,5 +1,5 @@
 //deklarera variabler
-var c, ctx, bollX = 100, bollY = 100, bollVX = -1, bollVY = 2;
+var c, ctx, bollX = 200, bollY = 150, bollVX = -1, bollVY = 2;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 
 //skaffa canvas
@@ -19,11 +19,14 @@ function update(){
     //Måla boll
     ctx.beginPath();
     ctx.arc(bollX, bollY, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = "rgb(0,0,0)"
     ctx.fill();
     ctx.closePath();
     
     //Måla paddlar
+    ctx.fillStyle = "rgb(255,128,0)"
     ctx.fillRect(10, leftPlY, 20, 50);
+    ctx.fillStyle = "rgb(204,0,102)"
     ctx.fillRect(370, rightPlY, 20, 50);
 
     // Flytta boll
@@ -91,11 +94,9 @@ function keyDown(e){
     if(e.keyCode == 40){
         rightPlVY = 2;
     }
-    
-    //kolla keyID
-//    console.log(e.keyCode);
 }
-    
+
+//funktionen som behandlar alla knappsläppningar 
 function keyUp(e){
     //vänster knapptryck uppåt w
     if(e.keyCode == 87){
@@ -114,3 +115,5 @@ function keyUp(e){
         rightPlVY = 0;
     }
 }
+//kolla keyID
+//console.log(e.keyCode);
