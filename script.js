@@ -15,7 +15,15 @@ function update(){
 
     //Sudda canvas
     ctx.clearRect(0, 0, c.width, c.height);
-    
+    /*
+    //Måla mittlinje
+    ctx.beginPath();
+    ctx.moveTo(200,0);
+    ctx.lineTo(200,300);
+    ctx.strokeStyle = "lightblue"
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    */
     //Måla boll
     ctx.beginPath();
     ctx.arc(bollX, bollY, 5, 0, 2 * Math.PI);
