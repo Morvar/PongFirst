@@ -11,6 +11,9 @@ var bounceSound = new Howl({
 var scoreSound = new Howl({
   urls: ['sounds/sound3.mp3']
 });
+var scoreSound2 = new Howl({
+  urls: ['sounds/sound4.mp3']
+});
 
 //skaffa canvas
 function init () {
@@ -109,6 +112,9 @@ function update(){
         document.getElementById("leftPlScore").innerHTML = "Left player: " + leftPlScore;
         bollX = 200;
         scoreSound.play();
+    }
+    if(leftPlScore % 5 == 0 && leftPlScore != 0){
+        scoreSound2.play();
     }
 
 }
