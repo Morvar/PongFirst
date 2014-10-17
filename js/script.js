@@ -3,10 +3,13 @@ var c, ctx, bollX = 200, bollY = 150, bollVX = -1, bollVY = 2;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0;
 var bgSound = new Howl({
-  urls: ['sounds/sound1.mp3'], loop:true
+  urls: ['sounds/sound1b.mp3'], loop:true
 }).play();
 var bounceSound = new Howl({
   urls: ['sounds/sound2.mp3']
+});
+var scoreSound = new Howl({
+  urls: ['sounds/sound3.mp3']
 });
 
 //skaffa canvas
@@ -51,25 +54,29 @@ function update(){
     //Flytta spelare
     leftPlY = leftPlY + leftPlVY;
     rightPlY = rightPlY + rightPlVY;
+    
     // Studs i nederkant
     if (bollY > 300) {
         bollVY = -bollVY;
         bollY = 300;
+        bounceSound.play();
     }
 
     // Studs i överkant
     if (bollY < 0) {
         bollVY = -bollVY;
         bollY = 0;
-        
+        bounceSound.play();
     }
     //studs mot spelare left
     if(bollX > 10 && bollX < 30 && bollY > leftPlY && bollY < leftPlY + 50){
         bollVX = bollVX * (-1);
+        bounceSound.play();
     }
     //studs mot spelare right
     if(bollX > 370 && bollX < 390 && bollY > rightPlY && bollY < rightPlY + 50){
         bollVX = bollVX * (-1);
+        bounceSound.play();
     }
     
     //hindra rutorna från att fly
@@ -95,11 +102,13 @@ function update(){
         rightPlScore ++;
         document.getElementById("rightPlScore").innerHTML = "Right player: " + rightPlScore;
         bollX = 200;
+        scoreSound.play();
     }
     if(bollX > 400){
         leftPlScore ++;
         document.getElementById("leftPlScore").innerHTML = "Left player: " + leftPlScore;
         bollX = 200;
+        scoreSound.play();
     }
 
 }
