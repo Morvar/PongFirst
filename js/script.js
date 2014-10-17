@@ -61,6 +61,7 @@ function update(){
     if (bollY < 0) {
         bollVY = -bollVY;
         bollY = 0;
+        
     }
     //studs mot spelare left
     if(bollX > 10 && bollX < 30 && bollY > leftPlY && bollY < leftPlY + 50){
