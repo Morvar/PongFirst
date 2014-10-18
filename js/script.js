@@ -113,11 +113,16 @@ function update(){
         bollX = 200;
         scoreSound.play();
     }
-    if(leftPlScore % 5 == 0 && leftPlScore != 0){
-        scoreSound2.play();
-    }
 
 }
+/*
+function scoreCheck(){
+    if(leftPlScore % 5 == 0 && leftPlScore != 0){
+        
+        scoreSound2.play();
+    }
+}*/
+
 //funktionen som behandlar alla knapptryckningar
 function keyDown(e){
     //vänster knapptryck uppåt w
