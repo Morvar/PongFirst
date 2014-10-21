@@ -1,5 +1,5 @@
 //deklarera variabler
-var c, ctx, bollX = 200, bollY = 150, bollVX = -1, bollVY = 2;
+var c, ctx, bollX = 200, bollY = 150, bollVX = -2, bollVY = 2;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0;
 var bgSound = new Howl({
@@ -127,19 +127,19 @@ function scoreCheck(){
 function keyDown(e){
     //vänster knapptryck uppåt w
     if(e.keyCode == 87){
-        leftPlVY = -2;
+        leftPlVY = -4;
     }
     //vänster neråt s
     if(e.keyCode == 83){
-        leftPlVY = 2;
+        leftPlVY = 4;
     }
     //höger uppåt up
     if(e.keyCode == 38){
-        rightPlVY = -2;
+        rightPlVY = -4;
     }
     //höger neråt down
     if(e.keyCode == 40){
-        rightPlVY = 2;
+        rightPlVY = 4;
     }
 }
 
