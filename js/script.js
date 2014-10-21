@@ -28,15 +28,7 @@ function update(){
 
     //Sudda canvas
     ctx.clearRect(0, 0, c.width, c.height);
-    /*
-    //Måla mittlinje
-    ctx.beginPath();
-    ctx.moveTo(200,0);
-    ctx.lineTo(200,300);
-    ctx.strokeStyle = "lightblue"
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    */
+
     //Måla boll
     ctx.beginPath();
     ctx.arc(bollX, bollY, 5, 0, 2 * Math.PI);
@@ -113,15 +105,25 @@ function update(){
         bollX = 200;
         scoreSound.play();
     }
+    scoreCheck();
 
 }
 /*
 function scoreCheck(){
     if(leftPlScore % 5 == 0 && leftPlScore != 0){
-        
+        var leftPlScoreOld = leftPlScore;
+        if(leftPlScore % 5 == 0 && leftPlScoreOld % 5 == 0){
         scoreSound2.play();
+        }
     }
-}*/
+    if(rightPlScore % 5 == 0 && rightPlScore != 0){
+        var rightPlScoreOld = rightPlScore;
+        if(rightPlScore % 5 == 0 && rightPlScoreOld % 5 == 0){
+        scoreSound2.play();
+        }
+    }
+}
+*/
 
 //funktionen som behandlar alla knapptryckningar
 function keyDown(e){
