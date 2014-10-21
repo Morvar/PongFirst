@@ -3,7 +3,7 @@ var c, ctx, bollX = 200, bollY = 150, bollVX = -1, bollVY = 2;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0;
 var bgSound = new Howl({
-  urls: ['sounds/sound1b.mp3'], loop:true
+  urls: ['sounds/sandstorm.mp3'], loop:true
 }).play();
 var bounceSound = new Howl({
   urls: ['sounds/sound2.mp3']
