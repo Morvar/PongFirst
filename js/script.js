@@ -1,7 +1,7 @@
 //deklarera variabler
 var c, ctx, bollX = 200, bollY = 150, bollVX = -2, bollVY = 2;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
-var leftPlScore = 0, rightPlScore = 0;
+var leftPlScore = 0, rightPlScore = 0, leftPlScoreOld = 0, rightPlScoreOld = 0;
 var bgSound = new Howl({
   urls: ['sounds/sandstorm.mp3'], loop:true
 }).play();
@@ -108,22 +108,19 @@ function update(){
     scoreCheck();
 
 }
-/*
+
 function scoreCheck(){
-    if(leftPlScore % 5 == 0 && leftPlScore != 0){
-        var leftPlScoreOld = leftPlScore;
-        if(leftPlScore % 5 == 0 && leftPlScoreOld % 5 == 0){
+    if(leftPlScore % 10 == 0 && leftPlScoreOld % 10 != 0){
         scoreSound2.play();
-        }
     }
-    if(rightPlScore % 5 == 0 && rightPlScore != 0){
-        var rightPlScoreOld = rightPlScore;
-        if(rightPlScore % 5 == 0 && rightPlScoreOld % 5 == 0){
+    leftPlScoreOld = leftPlScore;
+    
+    if(rightPlScore % 10 == 0 && rightPlScoreOld % 10 != 0){
         scoreSound2.play();
-        }
     }
+    rightPlScoreOld = rightPlScore;
 }
-*/
+
 
 //funktionen som behandlar alla knapptryckningar
 function keyDown(e){
