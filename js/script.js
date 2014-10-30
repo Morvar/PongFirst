@@ -1,8 +1,32 @@
 //deklarera variabler
-var c, ctx, bollX = 200, bollY = 150, bollVX = -2, bollVY = 2;
+var c, ctx, bollX = 200, bollY = 150;
+var initAng = 0.4, initSpd = 2, initDrc = 1;
+var angle = initAng, speed = initSpd, direc = initDrc, speedChange = 0.2;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0, leftPlScoreOld = 0, rightPlScoreOld = 0;
+/* 
+Bollens rörelse är en funktion av fart, vinkel
+och riktning upp/ner.
+*/
+function bollVX(speed1, angle1, direc1){
+   
+    return angle1 * speed1;
+   
+}
 
+function bollVY(speed1, angle1, direc1){
+    
+    if(angle1 < 0){
+        return (-1 - angle1)* speed1 * direc1; }
+    else if(angle1 > 0){
+        return (1 - angle1) * speed1 * direc1;}
+    else{
+        return speed1 * direc1;}
+}
+
+console.log('x ' + bollVX(speed, angle, direc));
+console.log('y ' + bollVY(speed, angle, direc));
+//______________________
 var songNum = Math.floor((Math.random() * 4));
 console.log(songNum);
 if(songNum == 0){
@@ -67,8 +91,8 @@ function update(){
     ctx.fillRect(370, rightPlY, 20, 50);
 
     // Flytta boll
-    bollX = bollX + bollVX;
-    bollY = bollY + bollVY;
+    bollX = bollX + bollVX(speed,angle,direc);
+    bollY = bollY + bollVY(speed,angle,direc);
 
     //Flytta spelare
     leftPlY = leftPlY + leftPlVY;
@@ -76,29 +100,41 @@ function update(){
     
     // Studs i nederkant
     if (bollY > 300) {
-        bollVY = -bollVY;
+        direc = -direc;
         bollY = 300;
+        speed = speed + speedChange;
         bounceSound.play();
     }
 
     // Studs i överkant
     if (bollY < 0) {
-        bollVY = -bollVY;
+        direc = -direc;
         bollY = 0;
+        speed = speed + speedChange;
         bounceSound.play();
     }
+    
     //studs mot spelare left
     if(bollX > 10 && bollX < 30 && bollY > leftPlY && bollY < leftPlY + 50){
         bollX = 30;
-        bollVX = bollVX * (-1);
+        direc = -direc;
+        speed = speed + speedChange;
+        angle = Math.random()*0.65 + 0.25
+        //angle = -angle;
+        console.log('v ' + angle);
         bounceSound.play();
     }
     //studs mot spelare right
     if(bollX > 370 && bollX < 390 && bollY > rightPlY && bollY < rightPlY + 50){
         bollX = 370;
-        bollVX = bollVX * (-1);
+        direc = -direc;
+        speed = speed + speedChange;
+        angle = -(Math.random()*0.65 + 0.25)
+        //angle = -angle;
+        console.log('v ' + angle);
         bounceSound.play();
     }
+    
     
     //hindra rutorna från att fly
     if(leftPlY < -25){
@@ -118,16 +154,16 @@ function update(){
     rightPlY = 275;
     }
     
-    //poängräkning
+    //poängräkning och bollkontroll
     if(bollX < 0){
         rightPlScore ++;
-        document.getElementById("rightPlScore").innerHTML = "Right player: " + rightPlScore;
+        speed = initSpd; document.getElementById("rightPlScore").innerHTML = "Right player: " + rightPlScore;
         bollX = 200;
         scoreSound.play();
     }
     if(bollX > 400){
         leftPlScore ++;
-        document.getElementById("leftPlScore").innerHTML = "Left player: " + leftPlScore;
+        speed = initSpd; document.getElementById("leftPlScore").innerHTML = "Left player: " + leftPlScore;
         bollX = 200;
         scoreSound.play();
     }
