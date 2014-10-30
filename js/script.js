@@ -1,23 +1,23 @@
 //deklarera variabler
 var c, ctx, bollX = 200, bollY = 150;
-var initAng = 0.4, initSpd = 2, initDrc = 1;
-var angle = initAng, speed = initSpd, direc = initDrc, speedChange = 0.2;
+var initAng = -0.5, initSpd = 3, initDrc = -1;
+var angle = initAng, speed = initSpd, direc = initDrc, speedChange = 0.1;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0, leftPlScoreOld = 0, rightPlScoreOld = 0;
 /* 
 Bollens rörelse är en funktion av fart, vinkel
 och riktning upp/ner.
 */
-function bollVX(speed1, angle1, direc1){
+function bollVY(speed1, angle1, direc1){
    
     return angle1 * speed1;
    
 }
 
-function bollVY(speed1, angle1, direc1){
+function bollVX(speed1, angle1, direc1){
     
     if(angle1 < 0){
-        return (-1 - angle1)* speed1 * direc1; }
+        return (1 + angle1)* speed1 * direc1;}
     else if(angle1 > 0){
         return (1 - angle1) * speed1 * direc1;}
     else{
@@ -100,7 +100,8 @@ function update(){
     
     // Studs i nederkant
     if (bollY > 300) {
-        direc = -direc;
+        angle = -angle;
+        //direc = -direc;
         bollY = 300;
         speed = speed + speedChange;
         bounceSound.play();
@@ -108,7 +109,8 @@ function update(){
 
     // Studs i överkant
     if (bollY < 0) {
-        direc = -direc;
+        angle = -angle;
+        //direc = -direc;
         bollY = 0;
         speed = speed + speedChange;
         bounceSound.play();
@@ -119,8 +121,14 @@ function update(){
         bollX = 30;
         direc = -direc;
         speed = speed + speedChange;
-        angle = Math.random()*0.65 + 0.25
-        //angle = -angle;
+        /*Slumpmässig vinkel
+        if(angle > 0){
+            angle = Math.random()*0.65 + 0.1
+        }else{
+            angle = -(Math.random()*0.65 + 0.1)
+        }*/
+        angle = (bollY - leftPlY - 25)*0.025;
+        //angle = ((bollY - leftPlY - 25)*0.025+angle)/2;
         console.log('v ' + angle);
         bounceSound.play();
     }
@@ -129,8 +137,14 @@ function update(){
         bollX = 370;
         direc = -direc;
         speed = speed + speedChange;
-        angle = -(Math.random()*0.65 + 0.25)
-        //angle = -angle;
+        /*Slumpmässig vinkel
+        if(angle > 0){
+            angle = Math.random()*0.65 + 0.1
+        }else{
+            angle = -(Math.random()*0.65 + 0.1)
+        }*/
+        angle = (bollY - rightPlY - 25)*0.025
+        //angle = ((bollY - rightPlY - 25)*0.025+angle)/2;
         console.log('v ' + angle);
         bounceSound.play();
     }
