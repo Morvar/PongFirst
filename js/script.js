@@ -6,7 +6,9 @@ var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0, leftPlScoreOld = 0, rightPlScoreOld = 0;
 /* 
 Bollens rörelse är en funktion av fart, vinkel
-och riktning upp/ner.
+och riktning höger/vänster.
+Vinkeln -1 (uppåt) till 1(nedåt). 0 = horisontellt. ±1 = vertikalt.
+vinkeln används som vy. det som vinkeln inte är, 1-en vinkel (1+ negativ vinkel) blir vx. Om vinkeln är positiv subtraheras den från 1 för vx. Om vinkeln == 0 läggs all fart på x.
 */
 function bollVY(speed1, angle1, direc1){
    
@@ -101,7 +103,6 @@ function update(){
     // Studs i nederkant
     if (bollY > 300) {
         angle = -angle;
-        //direc = -direc;
         bollY = 300;
         speed = speed + speedChange;
         bounceSound.play();
@@ -110,7 +111,6 @@ function update(){
     // Studs i överkant
     if (bollY < 0) {
         angle = -angle;
-        //direc = -direc;
         bollY = 0;
         speed = speed + speedChange;
         bounceSound.play();
@@ -121,14 +121,10 @@ function update(){
         bollX = 30;
         direc = -direc;
         speed = speed + speedChange;
-        /*Slumpmässig vinkel
-        if(angle > 0){
-            angle = Math.random()*0.65 + 0.1
-        }else{
-            angle = -(Math.random()*0.65 + 0.1)
-        }*/
-        angle = (bollY - leftPlY - 25)*0.025;
-        //angle = ((bollY - leftPlY - 25)*0.025+angle)/2;
+        //jämför avståndetmellan bollen och paddelns mitt. 0.025 skalar ner värdet till användbar vinkel, eftersom man inte vill ha för skeva studsar. vinkeln blir <0.625 och >-0.625.
+        //angle = (bollY - leftPlY - 25)*0.025;
+        //genomsnitt mellan infallsvinkeln och planerade reflektionsvinkeln
+        angle = ((bollY - leftPlY - 25)*0.025+angle)/2;
         console.log('v ' + angle);
         bounceSound.play();
     }
@@ -137,12 +133,6 @@ function update(){
         bollX = 370;
         direc = -direc;
         speed = speed + speedChange;
-        /*Slumpmässig vinkel
-        if(angle > 0){
-            angle = Math.random()*0.65 + 0.1
-        }else{
-            angle = -(Math.random()*0.65 + 0.1)
-        }*/
         angle = (bollY - rightPlY - 25)*0.025
         //angle = ((bollY - rightPlY - 25)*0.025+angle)/2;
         console.log('v ' + angle);
@@ -171,13 +161,19 @@ function update(){
     //poängräkning och bollkontroll
     if(bollX < 0){
         rightPlScore ++;
-        speed = initSpd; document.getElementById("rightPlScore").innerHTML = "Right player: " + rightPlScore;
+        speed = initSpd;
+        angle = initAng;
+        direc = -direc;
+        document.getElementById("rightPlScore").innerHTML = "Right player: " + rightPlScore;
         bollX = 200;
         scoreSound.play();
     }
     if(bollX > 400){
         leftPlScore ++;
-        speed = initSpd; document.getElementById("leftPlScore").innerHTML = "Left player: " + leftPlScore;
+        speed = initSpd;
+        angle = initAng;
+        direc = -direc;
+        document.getElementById("leftPlScore").innerHTML = "Left player: " + leftPlScore;
         bollX = 200;
         scoreSound.play();
     }
