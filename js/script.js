@@ -2,9 +2,33 @@
 var c, ctx, bollX = 200, bollY = 150, bollVX = -2, bollVY = 2;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0, leftPlScoreOld = 0, rightPlScoreOld = 0;
-var bgSound = new Howl({
-  urls: ['sounds/sandstorm.mp3'], loop:true
-}).play();
+
+var songNum = Math.floor((Math.random() * 4));
+console.log(songNum);
+if(songNum == 0){
+    var bgSound = new Howl({
+        urls: ['sounds/sandstorm.mp3'], loop:true
+        }).play();
+}
+
+else if(songNum == 1){
+    var bgSound = new Howl({
+        urls: ['sounds/rct2modernstyle.mp3'], loop:true
+        }).play();
+}
+
+else if(songNum == 2){
+    var bgSound = new Howl({
+        urls: ['sounds/rct2technostyle.mp3'], loop:true
+        }).play();
+}
+else if(songNum == 3){
+    var bgSound = new Howl({
+        urls: ['sounds/gourmetracen64.mp3'], loop:true
+        }).play();
+}
+
+
 var bounceSound = new Howl({
   urls: ['sounds/sound2.mp3']
 });
