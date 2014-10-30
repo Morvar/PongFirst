@@ -89,11 +89,13 @@ function update(){
     }
     //studs mot spelare left
     if(bollX > 10 && bollX < 30 && bollY > leftPlY && bollY < leftPlY + 50){
+        bollX = 30;
         bollVX = bollVX * (-1);
         bounceSound.play();
     }
     //studs mot spelare right
     if(bollX > 370 && bollX < 390 && bollY > rightPlY && bollY < rightPlY + 50){
+        bollX = 370;
         bollVX = bollVX * (-1);
         bounceSound.play();
     }
