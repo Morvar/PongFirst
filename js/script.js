@@ -124,7 +124,7 @@ function update(){
         //jämför avståndetmellan bollen och paddelns mitt. 0.025 skalar ner värdet till användbar vinkel, eftersom man inte vill ha för skeva studsar. vinkeln blir <0.625 och >-0.625.
         //angle = (bollY - leftPlY - 25)*0.025;
         //genomsnitt mellan infallsvinkeln och planerade reflektionsvinkeln
-        angle = ((bollY - leftPlY - 25)*0.025+angle)/2;
+        angle = ((bollY - leftPlY - 25) * 0.025 + angle * 0.5) / 1.35;
         console.log('v ' + angle);
         bounceSound.play();
     }
@@ -133,8 +133,8 @@ function update(){
         bollX = 370;
         direc = -direc;
         speed = speed + speedChange;
-        angle = (bollY - rightPlY - 25)*0.025
-        //angle = ((bollY - rightPlY - 25)*0.025+angle)/2;
+        angle = ((bollY - rightPlY - 25) * 0.025 + angle * 0.5) / 1.35;
+        //angle = (bollY - rightPlY - 25)*0.025
         console.log('v ' + angle);
         bounceSound.play();
     }
@@ -178,6 +178,10 @@ function update(){
         scoreSound.play();
     }
     scoreCheck();
+    
+    //Visa vinkel och hastighet
+    document.getElementById("speed").innerHTML = "Speed: " + speed;
+    document.getElementById("angle").innerHTML = "Angle: " + angle;
 
 }
 
