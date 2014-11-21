@@ -4,6 +4,7 @@ var initAng = -0.5, initSpd = 3, initDrc = -1;
 var angle = initAng, speed = initSpd, direc = initDrc, speedChange = 0.1;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0, leftPlScoreOld = 0, rightPlScoreOld = 0;
+var speedPl = 4.0, speedChangePl = 0.05;
 /* 
 Bollens rörelse är en funktion av fart, vinkel
 och riktning höger/vänster.
@@ -105,6 +106,7 @@ function update(){
         angle = -angle;
         bollY = 300;
         speed = speed + speedChange;
+        speedPl = speedPl + speedChangePl;
         bounceSound.play();
     }
 
@@ -113,6 +115,7 @@ function update(){
         angle = -angle;
         bollY = 0;
         speed = speed + speedChange;
+        speedPl = speedPl + speedChangePl;
         bounceSound.play();
     }
     
@@ -121,6 +124,8 @@ function update(){
         bollX = 30;
         direc = -direc;
         speed = speed + speedChange;
+        speedPl = speedPl + speedChangePl;
+        
         //jämför avståndetmellan bollen och paddelns mitt. 0.025 skalar ner värdet till användbar vinkel, eftersom man inte vill ha för skeva studsar. vinkeln blir <0.625 och >-0.625.
         //angle = (bollY - leftPlY - 25)*0.025;
         //genomsnitt mellan infallsvinkeln och planerade reflektionsvinkeln
@@ -133,6 +138,7 @@ function update(){
         bollX = 370;
         direc = -direc;
         speed = speed + speedChange;
+        speedPl = speedPl + speedChangePl;
         angle = ((bollY - rightPlY - 25) * 0.025 + angle * 0.5) / 1.35;
         //angle = (bollY - rightPlY - 25)*0.025
         console.log('v ' + angle);
@@ -204,19 +210,19 @@ function keyDown(e){
     e.preventDefault();
     //vänster knapptryck uppåt w
     if(e.keyCode == 87){
-        leftPlVY = -4;
+        leftPlVY = -speedPl;
     }
     //vänster neråt s
     if(e.keyCode == 83){
-        leftPlVY = 4;
+        leftPlVY = speedPl;
     }
     //höger uppåt up
     if(e.keyCode == 38){
-        rightPlVY = -4;
+        rightPlVY = -speedPl;
     }
     //höger neråt down
     if(e.keyCode == 40){
-        rightPlVY = 4;
+        rightPlVY = speedPl;
     }
 }
 
