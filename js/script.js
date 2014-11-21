@@ -200,6 +200,8 @@ function scoreCheck(){
 
 //funktionen som behandlar alla knapptryckningar
 function keyDown(e){
+    //förhindra att den scrollar
+    e.preventDefault();
     //vänster knapptryck uppåt w
     if(e.keyCode == 87){
         leftPlVY = -4;
