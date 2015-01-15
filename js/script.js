@@ -4,10 +4,32 @@ var initAng = -0.5, initSpd = 4, initDrc = -1;
 var angle = initAng, speed = initSpd, direc = initDrc, speedChange = 0.1;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0, leftPlScoreOld = 0, rightPlScoreOld = 0;
-var speedPl = 5.0, speedChangePl = 0.05;
-var ballColorR = 255, ballColorG = 255, ballColorB = 255;
-function ballColor(r, g, b){
-    return "rgb("+r+","+g+","+b+")";
+var initSpeedPl = 5.0, speedPl = initSpeedPl, speedChangePl = 0.1;
+var ballColorR = 255, ballColorG = 0, ballColorB = 0, colorStep = 5;
+
+function ballColor(){
+ 
+    if(ballColorR == 255 && ballColorG < 255 && ballColorB == 0){
+        ballColorG += colorStep;
+    }
+    if(ballColorR > 0 && ballColorG == 255 && ballColorB == 0){
+        ballColorR -= colorStep;
+    }
+
+    if(ballColorG == 255 && ballColorB < 255 && ballColorR == 0){
+        ballColorB += colorStep;
+    }
+    if(ballColorG > 0 && ballColorB == 255 && ballColorR == 0){
+        ballColorG -= colorStep;
+    }
+
+    if(ballColorB == 255 && ballColorR < 255 && ballColorG == 0){
+        ballColorR += colorStep;
+    }
+    if(ballColorR > 0 && ballColorR == 255 && ballColorG == 0){
+        ballColorB -= colorStep;
+    }
+    return "rgb("+ballColorR+","+ballColorG+","+ballColorB+")";
 }
 
 /* 
@@ -81,6 +103,8 @@ function init () {
 }
 
 function update(){
+    
+    var RGBColor = ballColor();
 
     //Sudda canvas
     ctx.clearRect(0, 0, c.width, c.height);
@@ -88,15 +112,21 @@ function update(){
     //Måla boll
     ctx.beginPath();
     ctx.arc(bollX, bollY, 5, 0, 2 * Math.PI);
-    ctx.fillStyle = ballColor(ballColorR, ballColorG, ballColorB); //-------
+    ctx.fillStyle = RGBColor;
     ctx.fill();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = '#FFFFFF';
+    ctx.stroke();
     ctx.closePath();
     
     //Måla paddlar
-    ctx.fillStyle = "rgb(255,128,0)"
+    //ctx.fillStyle = "rgb(255,128,0)"
     ctx.fillRect(10, leftPlY, 20, 50);
-    ctx.fillStyle = "rgb(204,0,102)"
+    ctx.strokeRect(10, leftPlY, 20, 50);
+
+    //ctx.fillStyle = "rgb(204,0,102)";
     ctx.fillRect(370, rightPlY, 20, 50);
+    ctx.strokeRect(370, rightPlY, 20, 50);
 
     // Flytta boll
     bollX = bollX + bollVX(speed,angle,direc);
@@ -173,6 +203,7 @@ function update(){
     if(bollX < 0){
         rightPlScore ++;
         speed = initSpd;
+        speedPl = initSpeedPl;
         angle = initAng;
         direc = -direc;
         document.getElementById("rightPlScore").innerHTML = "Right player: " + rightPlScore;
@@ -182,6 +213,7 @@ function update(){
     if(bollX > 400){
         leftPlScore ++;
         speed = initSpd;
+        speedPl = initSpeedPl;
         angle = initAng;
         direc = -direc;
         document.getElementById("leftPlScore").innerHTML = "Left player: " + leftPlScore;
