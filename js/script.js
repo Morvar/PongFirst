@@ -1,10 +1,10 @@
 //deklarera variabler
 var c, ctx, bollX = 200, bollY = 150;
-var initAng = -0.5, initSpd = 3, initDrc = -1;
+var initAng = -0.5, initSpd = 4, initDrc = -1;
 var angle = initAng, speed = initSpd, direc = initDrc, speedChange = 0.1;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0, leftPlScoreOld = 0, rightPlScoreOld = 0;
-var speedPl = 4.0, speedChangePl = 0.05;
+var speedPl = 5.0, speedChangePl = 0.05;
 /* 
 Bollens rörelse är en funktion av fart, vinkel
 och riktning höger/vänster.
@@ -192,12 +192,12 @@ function update(){
 }
 
 function scoreCheck(){
-    if(leftPlScore % 10 == 0 && leftPlScoreOld % 10 != 0){
+    if(leftPlScore % 5 == 0 && leftPlScoreOld % 5 != 0){
         scoreSound2.play();
     }
     leftPlScoreOld = leftPlScore;
     
-    if(rightPlScore % 10 == 0 && rightPlScoreOld % 10 != 0){
+    if(rightPlScore % 5 == 0 && rightPlScoreOld % 5 != 0){
         scoreSound2.play();
     }
     rightPlScoreOld = rightPlScore;
