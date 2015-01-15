@@ -5,6 +5,11 @@ var angle = initAng, speed = initSpd, direc = initDrc, speedChange = 0.1;
 var leftPlY = 100, rightPlY = 200, leftPlVY = 0, rightPlVY = 0;
 var leftPlScore = 0, rightPlScore = 0, leftPlScoreOld = 0, rightPlScoreOld = 0;
 var speedPl = 5.0, speedChangePl = 0.05;
+var ballColorR = 255, ballColorG = 255, ballColorB = 255;
+function ballColor(r, g, b){
+    return "rgb("+r+","+g+","+b+")";
+}
+
 /* 
 Bollens rörelse är en funktion av fart, vinkel
 och riktning höger/vänster.
@@ -83,7 +88,7 @@ function update(){
     //Måla boll
     ctx.beginPath();
     ctx.arc(bollX, bollY, 5, 0, 2 * Math.PI);
-    ctx.fillStyle = "rgb(255,255,255)"
+    ctx.fillStyle = ballColor(ballColorR, ballColorG, ballColorB); //-------
     ctx.fill();
     ctx.closePath();
     
